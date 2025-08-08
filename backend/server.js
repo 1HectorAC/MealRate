@@ -1,6 +1,7 @@
 const express = require('express');
 const { GoogleGenerativeAI } = require('@google/generative-ai'); 
 const cors = require('cors');
+const systemPrompt = require('./prompts');
 require('dotenv').config();
 
 const app = express();
@@ -19,7 +20,8 @@ app.post('/api/generate', async (req,res) =>{
 		if(!prompt)
 			return res.status(400).send({error:"Prompt Required"});
 		const model = genAi.getGenerativeModel({model:'gemini-2.5-flash'});
-		const result = await model.generateContent(prompt);
+		const fullPrompt = systemPrompt.default + prompt;
+		const result = await model.generateContent(fullPrompt);
 		const response = result.response;
 		const text = response.text();
 		res.send({generated_text:text});
