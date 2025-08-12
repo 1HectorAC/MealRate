@@ -1,7 +1,6 @@
 const express = require('express');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const cors = require('cors');
-//const systemPrompt = require('./prompts');
 const promptCreate = require('./prompts');
 require('dotenv').config();
 
@@ -25,13 +24,13 @@ app.post('/api/generate', async (req, res) => {
 		const result = await model.generateContent(fullPrompt);
 		const response = result.response;
 		const text = response.text();
-		console.log(text);
 		let data;
 		try {
 			data = JSON.parse(text);
 			// Optionally, validate required fields:
-			if (data && typeof data === 'object' && data.hasOwnProperty('well') && data.hasOwnProperty('notWell')) {
-				res.send({ generated_text: text });
+			if (data && typeof data === 'object' && data.hasOwnProperty('well') && data.hasOwnProperty('notWell') && data.hasOwnProperty('improvements') && data.hasOwnProperty('score')) {
+				data.prompt = prompt;
+				res.send(data);
 			} else {
 				res.status(500).send({ error: 'Failure to generate content.' });
 			}
@@ -41,7 +40,6 @@ app.post('/api/generate', async (req, res) => {
 			res.status(500).send({ error: 'Failure to generate content.' });
 
 		}
-		//res.status(500).send({ error: 'Failure to generate content.' });
 
 	}
 	catch (error) {

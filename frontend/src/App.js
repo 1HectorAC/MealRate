@@ -30,17 +30,16 @@ function App() {
       setIsLoading(false);
       setError(null);
       setPrompt('');
-      // Assuming the response contains a 'generated_text' field
-      if (json.generated_text) {
-        setResponse(json.generated_text);
-      }
+      if(json.well && json.notWell && json.improvements && json.score && json.prompt )
+        setResponse(json);
+      
     }
   }
 
   return (
     <div className="App app-bg">
       <div className="app-container">
-        <h1 className="app-title">Test App</h1>
+        <h1 className="app-title">Meal Rate App</h1>
         <form onSubmit={handleSubmit} className="app-form">
           <input
             type="text"
@@ -61,7 +60,13 @@ function App() {
           <div className="app-error">{error}</div>
         )}
         {response && (
-          <div className="app-response">{response}</div>
+          <div className="app-response">
+            <p>Prompt: {response.prompt}</p>
+            <p>Good: {response.well}</p>
+            <p>Bad: {response.notWell}</p>
+            <p>Improvments: {response.improvements}</p>
+            <p>Score: {response.score} / 10</p>
+          </div>
         )}
       </div>
     </div>
