@@ -16,20 +16,23 @@ app.get('/', (req, res) => {
 
 app.post('/api/generate', async (req, res) => {
 	try {
-		const { prompt } = req.body;
+		const { prompt, goal } = req.body;
 		if (!prompt)
 			return res.status(400).send({ error: "Prompt Required" });
 		const model = genAi.getGenerativeModel({ model: 'gemini-2.5-flash' });
-		const fullPrompt = promptCreate(prompt, 'general');
+		const fullPrompt = promptCreate(prompt, goal);
 		const result = await model.generateContent(fullPrompt);
 		const response = result.response;
 		const text = response.text();
+		console.log(text);
 		let data;
+		
 		try {
 			data = JSON.parse(text);
 			// Optionally, validate required fields:
 			if (data && typeof data === 'object' && data.hasOwnProperty('well') && data.hasOwnProperty('notWell') && data.hasOwnProperty('improvements') && data.hasOwnProperty('score')) {
 				data.prompt = prompt;
+				data.goal = goal;
 				res.send(data);
 			} else {
 				res.status(500).send({ error: 'Failure to generate content.' });

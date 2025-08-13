@@ -1,3 +1,36 @@
+/* Improved styling for select and label */
+.app-form label[for="goal"] {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+  color: #333;
+  letter-spacing: 0.5px;
+}
+
+/* Unified input and select styling */
+.app-form input[type="text"],
+.app-form select#goal {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #bdbdbd;
+  border-radius: 6px;
+  background: #f9f9f9;
+  font-size: 1rem;
+  color: #222;
+  margin-bottom: 1rem;
+  transition: border-color 0.2s, background 0.2s;
+  box-sizing: border-box;
+}
+
+
+
+.app-form input[type="text"]:focus,
+.app-form select#goal:focus {
+  border-color: #4f8cff;
+  outline: none;
+  background: #fff;
+}
 /* App background and centering */
 .app-bg {
   min-height: 100vh;
@@ -16,7 +49,7 @@
   border-radius: 1.25rem;
   box-shadow: 0 4px 24px rgba(0,0,0,0.08);
   min-width: 340px;
-  max-width: 90vw;
+  max-width: 50vw;
   text-align: center;
 }
 
