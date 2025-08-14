@@ -49,7 +49,7 @@ function App() {
             type="text"
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
-            placeholder="Ex. Soup with chicken and carrots, Orange, water"
+            placeholder="Ex. chicken soup, apple, water"
             className="app-input"
             id="prompt"
           />
@@ -70,17 +70,19 @@ function App() {
         {error && (
           <div className="app-error">{error}</div>
         )}
-        {response && (
-          <div className="app-response">
-            <p><b>Prompt:</b> {response.prompt}</p>
-            <p><b>Goal:</b> {response.goal}</p>
-            <p><b>Good:</b> {response.well}</p>
-            <p><b>Bad:</b> {response.notWell}</p>
-            <p><b>improvements:</b> {response.improvements}</p>
-            <p><b>Score:</b> {response.score} / 10</p>
-          </div>
-        )}
+
       </div>
+      {response && (
+        <div className="app-response">
+          <h2>Results</h2>
+          <p><b>Prompt:</b> {response.prompt}</p>
+          <p><b>Goal:</b> {response.goal}</p>
+          <p><b>Good:</b> {response.well}</p>
+          <p><b>Bad:</b> {response.notWell}</p>
+          <p><b>Improvements:</b> {response.improvements}</p>
+          <p><b>Score:</b> {response.score} / 10</p>
+        </div>
+      )}
     </div>
   );
 }

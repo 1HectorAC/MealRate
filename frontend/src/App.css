@@ -1,5 +1,6 @@
 /* Improved styling for select and label */
-.app-form label[for="goal"] {
+.app-form label[for="goal"],
+.app-form label[for="prompt"] {
   display: block;
   margin-top: 1rem;
   margin-bottom: 0.3rem;
@@ -31,6 +32,7 @@
   outline: none;
   background: #fff;
 }
+
 /* App background and centering */
 .app-bg {
   min-height: 100vh;
@@ -47,7 +49,7 @@
   background: #fff;
   padding: 2.5rem 2rem;
   border-radius: 1.25rem;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
   min-width: 340px;
   max-width: 50vw;
   text-align: center;
@@ -88,7 +90,7 @@
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(99,102,241,0.08);
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
   transition: background 0.2s;
 }
 
@@ -115,6 +117,7 @@
   font-weight: 500;
   word-break: break-word;
 }
+
 .App {
   text-align: center;
 }
@@ -149,6 +152,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
